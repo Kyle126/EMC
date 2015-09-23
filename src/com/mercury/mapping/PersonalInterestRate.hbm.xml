@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.mercury.bean.PersonalInterestRate" table="Personal_interest_rates">
+		<id name="bank_name" column="Bank_name"/>
+		<property name="personal_interest_rates" column="Personal_interest_rates"/>
+	</class>
+</hibernate-mapping>

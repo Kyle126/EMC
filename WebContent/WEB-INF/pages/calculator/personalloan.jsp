@@ -4,14 +4,7 @@
 
 <html ng-app="myApp">
 <head>
-<style>
-div.container{
-width:900px;
-}
-form{
-margin-left:50px;
-}
-</style>
+
 <link rel="stylesheet" type="text/css" href="css/to-top.css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -78,137 +71,46 @@ margin-left:50px;
 
 
 <!-- Enhanced Mortgage Calculator Content -->
-<div class='container'>
-    <div class='panel panel-primary dialog-panel'>
-      <div class='panel-heading'>
-        <h5>Almaguin Campground - Reservation</h5>
-      </div>
-      <div class='panel-body'>
+<div role="tabpanel" id="calculator-body">
+	<!-- Nav Tabs -->
+	<ul class="nav nav-justified" role="tablist" id="calculatorNav">
+		<li role="presentation" class="active">
+			<a href="#calculatorPane" aria-controls="calculatorPane" role="tab" data-toggle="tab">Mortage</a>
+		</li>
+		<li role="presentation">
+			<a href="#PersonalPane" aria-controls="resultPane" role="tab" data-toggle="tab">Personal Loan</a>
+		</li>
+		<li role="presentation">
+			<a href="#CarPane" aria-controls="chartPane" role="tab" data-toggle="tab">Car Loan</a>
+		</li>
+	</ul>
 	<br/>
 	
 	<!-- Tab Panes -->
 	<div class="tab-content">
-		<!-- personal Pane -->
+	<!-- personal Pane -->
 		<div role="tabpanel" class="tab-pane active" id="PersonalPane">
 		<!-- Calculator Pane -->
 		<div role="tabpanel" class="tab-pane active" id="calculatorPane">
-			<h3>Enhanced Mortgage Calculator</h3>
+			<h3>PersonalLoan</h3>
 			<form id="calculateForm" class="form-horizontal" ng-submit="calculate()">
-				<!-- State -->
+	<!-- bank -->
 				<div class="form-group">                    
-			        <label for="state" class="col-sm-4 control-label"><font color="red">* </font>State</label>
+			        <label for="bank" class="col-sm-4 control-label"><font color="red">* </font>bank</label>
 			        <div class="col-sm-4">
-				        <select class="form-control" id="state" name="state" ng-model="state" ng-options="key for (key, value) in stateList">
-				      		<option value=""></option>
-				    	</select>
-					</div>
-			    </div>
-			    <!-- Purchase price -->
-				<div class="form-group">                    
-			        <label for="purchase" class="col-sm-4 control-label"><font color="red">* </font>
-			        	Purchase Price&nbsp&nbsp
-			        	<img alt="Question" src="img/question-icon.png" data-toggle="tooltip" 
-			        	data-placement="top" title="{{purchaseQuest}}">
-			        </label>
-			        <div class="col-sm-4">
-			        	<div class="input-group">
-			      			<div class="input-group-addon">$</div>
-			            	<input type="text" class="form-control" id="purchase" name="purchase" ng-model="purchase">
-			            </div>
-			        </div>
-			    </div>
-			    <!-- Loan term -->
-				<div class="form-group">                    
-			        <label for="termInYears" class="col-sm-4 control-label"><font color="red">* </font>
-			        	Loan Term&nbsp&nbsp
-			        	<img alt="Question" src="img/question-icon.png" data-toggle="tooltip" 
-			        	data-placement="top" title="{{termInYearsQuest}}">
-			        </label>
-			        <div class="col-sm-4">
-			        	<label class="radio-inline">
-						  	<input type="radio" ng-model="termInYears" name="termInYears" value="30">30 years
-						</label>
-						<label class="radio-inline">
-						  	<input type="radio" ng-model="termInYears" name="termInYears" value="20">20 years
-						</label>
-						<label class="radio-inline">
-						  	<input type="radio" ng-model="termInYears" name="termInYears" value="15">15 years
-						</label>
-			        </div>
-			    </div>
-			    <!-- Loan type -->
-			    <div class="form-group">                    
-			        <label for="loanType" class="col-sm-4 control-label"><font color="red">* </font>
-			        	Loan Type&nbsp&nbsp
-			        	<img alt="Question" src="img/question-icon.png" data-toggle="tooltip" 
-			        	data-placement="top" title="{{loanTypeQuest}}">
-			        </label>
-			        <div class="col-sm-4">
-			        	<label class="radio-inline">
-						  	<input type="radio" ng-model="loanType" name="loanType" value="fixed">Fixed rate
-						</label>
-						<label class="radio-inline">
-						  	<input type="radio" ng-model="loanType" name="loanType" ng-disabled="isFixedSelected()" value="5_year_arm">5-year ARM
-						</label>
-						<label class="radio-inline">
-						  	<input type="radio" ng-model="loanType" name="loanType" ng-disabled="isFixedSelected()" value="7_year_arm">7-year ARM
-						</label>
-						<label class="radio-inline">
-						  	<input type="radio" ng-model="loanType" name="loanType" ng-disabled="isFixedSelected()" value="10_year_arm">10-year ARM
-						</label>
-			        </div>
-			    </div>
-			    <!-- Down payment -->
-			    <div class="form-group">                    
-			        <label for="downPayment" class="col-sm-4 control-label"><font color="red">* </font>
-			        	Down Payment&nbsp&nbsp
-			        	<img alt="Question" src="img/question-icon.png" data-toggle="tooltip" 
-			        	data-placement="top" title="{{downPaymentQuest}}">
-			        </label>
-			        <div class="col-sm-4">
-		            	<select class="form-control" id="downPayment" name="downPayment" ng-model="downPayment" ng-options="key for (key, value) in downPaymentList">
+				        <select class="form-control" id="bank" name="bank" ng-model="bank" ng-options="key for (key, value) in stateList">
 				      		<option value=""></option>
 				    	</select>
 			        </div>
-			    </div>
-			    <!-- Extra payment -->
-			    <div class="form-group">                    
-			        <label for="extraPayment" class="col-sm-4 control-label">
-			        	Additional Monthly Payment&nbsp&nbsp
-			        	<img alt="Question" src="img/question-icon.png" data-toggle="tooltip" 
-			        	data-placement="top" title="{{extraPaymentQuest}}">
-			        </label>
-			        <div class="col-sm-4">
-			        	<div class="input-group">
-			      			<div class="input-group-addon">$</div>
-			            	<input type="text" class="form-control" id="extraPayment" name="extraPayment" ng-model="extraPayment">
-			            </div>
 			        </div>
-			    </div>
-			    <!-- Extra month -->
+	<!-- rate -->
 			    <div class="form-group">                    
-			        <label for="extraMonth" class="col-sm-4 control-label">
-			        	Months of Additional Monthly Payment&nbsp&nbsp
-			        	<img alt="Question" src="img/question-icon.png" data-toggle="tooltip" 
-			        	data-placement="top" title="{{extraMonthQuest}}">
+			        <label for="rate" class="col-sm-4 control-label"><font color="red">* </font>
+			        	rate&nbsp&nbsp
 			        </label>
-			        <div class="col-sm-4">
-				    	<select class="form-control" id="extraMonth" name="extraMonth" ng-model="extraMonth" ng-options="month for month in months">
-				      		<option value=""></option>
-				    	</select>
-			        </div>
-			    </div> 
-			  	<div class="form-group">
-            <div class='col-md-offset-4 col-md-2'>
-              <button class='btn btn-primary' type='reset'>Reset</button>
-            </div>
-            <div class='col-md-2'>
-              <button class='btn btn-primary' id="calculatorBtn" type='submit'>Submit</button>
-            </div>
-          </div>    
-			</form>
-		</div>
-		</div>
+	</div>
+	</div>	
+
 </header>
 		<!-- Result Pane -->
 		    <header id="result2" class="header2">

@@ -1,199 +1,99 @@
-<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html ng-app="myApp">
 <head>
+
 <link rel="stylesheet" type="text/css" href="css/to-top.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Enhanced Mortgage Calculator</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <!-- Custom CSS -->
-    <link href="css/stylish-portfolio.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-
- <style>
-#map-canvas {
-	width: 100%;
-	height: 500px;
-}
-
-div#topbar {
-   margin: 0;
-   padding: .3em 0 .3em 0;
-   background: #707070 ;
-   width: 100%;
-   text-align: center;
-} 
-#nav {
-		width: 100%;
-		float: top;
-		margin: 0 0 3em 0;
-		padding: 0;
-		list-style: none;
-		background-color: #000000;
-		border-bottom: 1px solid #ccc; 
-		border-top: 1px solid #ccc; }
-	.dropdown{
-		margin-left: 500px;}
-#nav li {
-		float: left; }
-#nav li a {
-		display: block;
-		padding: 8px 15px;
-		text-decoration: none;
-		font-weight: bold;
-		font-size: 150%;
-		color: #FFFFFF ;
-		}
-#nav li a:hover {
-		color: #c00;
-		background-color: #fff; }
-		
-
-	.form {
-		margin: auto;
-		height: 86%;
-		width: 100%;
-		box-sizing: border-box;
-		padding: 40px;
-	}
-	.textbox:focus {
-		outline: none;
-		border: rgba(24, 149, 215, 1) 2px solid;
-		color: rgba(24, 149, 215, 1);
-	
-	.textbox:focus {
-		outline: none;
-		border: rgba(24, 149, 215, 1) 2px solid;
-		color: rgba(24, 149, 215, 1);
-	}		
-h6 {
-    display: block;
-    font-size: .67em;
-    margin-top: 2.33em;
-    margin-bottom: 2.33em;
-    margin-left: 0;
-    margin-right: 0;
-    font-weight: bold;
-}
-</style>
-   
-
+<!-- Custom CSS -->
+<link href="css/stylish-portfolio.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/validation.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+<title>Mortgage Calculator</title>
 </head>
-
 <body ng-controller="calculatorCtrl">
 
-    <!-- Navigation -->
- 	<div id="topbar">
-       <ul id="nav">
-            <sec:authorize access="isAnonymous()">
-             <li class="dropdown">
-					<a href="" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<form id="loginForm" action="<c:url value='/j_spring_security_check'/>" method="post" class="login-form">
-							<div class="form-group">
-								<label for="email">Username</label> 
-								<input type="text" class="form-control" name="j_username" id="j_username" placeholder="Username">
-							</div>
-							<div class="form-group">
-								<label for="password">Password</label>
-								<input type="password" class="form-control" name="j_password" id="j_password" placeholder="Password">
-							</div>
-							<div class="checkbox">
-								<label><input type="checkbox" name="_spring_security_remember_me" checked> Remember me for 30 days</label>
-							</div>
-							<div>
-								<a href="forgetPassword.html" style="color:red; font-size:15px" >Forget Password?</a>
-							</div>
-							<button type="submit" class="btn btn-primary pull-right">Sign In</button>
-						</form>
-					</ul>
-				</li>
-           
-            <li>
-                <a href="signup.html" onclick = $("#menu-close").click(); >Sign Up</a>
+<!-- Navigation -->
+    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+    <nav id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+            <li class="sidebar-brand">
+                <a href="home.html"  onclick = $("#menu-close").click(); >Mortgage Calculator</a>
             </li>
-            </sec:authorize>
-            	
-			
-			<sec:authorize access="isAuthenticated()">
-				<li class="dropdown">
+            
+            
+      	<li><a href="calculator.html">Calculator</a></li>
+      
+      
+         <li class="dropdown">
 		            <a href="" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
 		            <ul class="dropdown-menu">
 		              	<li><a href="updatePassword.html">Change Password</a></li>
 		              	<li><a href="updateEmail.html">Change Email</a></li>
 		              	<li><a href="<c:url value='/j_spring_security_logout'/>">Logout</a></li>
 		            </ul>
-	          	</li>
-			</sec:authorize>
-			
-			
-			<!-- Admin can access -->
-			<sec:authorize access="hasRole('ROLE_ADMIN')">          		
+	          </li>
+	          
+	          
+           	  <sec:authorize access="hasRole('ROLE_ADMIN')">          		
             			<li><a href="showInterestRate.html">Interest Rate Table</a></li>
-		              	<li><a href="updateInterestRate.html">Interest Rate Management</a></li>
-	            	
-	          	
+		              	<li><a href="updateInterestRate.html">Interest Rate Management</a></li>	            		          	
 			</sec:authorize>
 			
+			
             <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+                <a href="home.html" onclick = $("#menu-close").click(); >Home</a>
             </li>
             <li>
-                <a href="#callout" onclick = $("#menu-close").click(); >About</a>
+                <a href="home.html#callout" onclick = $("#menu-close").click(); >About</a>
             </li>
-              
+    
+                
             <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
+                <a href="home.html#contact" onclick = $("#menu-close").click(); >Contact</a>
             </li>
-    </ul>
-   </div>
- 
-<header id="top" class="header">
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+
+
 <!-- Enhanced Mortgage Calculator Content -->
 <div role="tabpanel" id="calculator-body">
 	<!-- Nav Tabs -->
 	<ul class="nav nav-justified" role="tablist" id="calculatorNav">
 		<li role="presentation" class="active">
-			<a href="#calculatorPane" aria-controls="calculatorPane" role="tab" data-toggle="tab">Calculator</a>
+			<a href="#calculatorPane" aria-controls="calculatorPane" role="tab" data-toggle="tab">Mortage</a>
 		</li>
 		<li role="presentation">
-			<a href="#resultPane" aria-controls="resultPane" role="tab" data-toggle="tab">Payment Schedule</a>
+			<a href="#PersonalPane" aria-controls="resultPane" role="tab" data-toggle="tab">Personal Loan</a>
 		</li>
 		<li role="presentation">
-			<a href="#chartPane" aria-controls="chartPane" role="tab" data-toggle="tab">Chart</a>
+			<a href="#CarPane" aria-controls="chartPane" role="tab" data-toggle="tab">Car Loan</a>
 		</li>
 	</ul>
 	<br/>
 	
 	<!-- Tab Panes -->
 	<div class="tab-content">
+		<!-- personal Pane -->
+		<div role="tabpanel" class="tab-pane active" id="PersonalPane">
 		<!-- Calculator Pane -->
 		<div role="tabpanel" class="tab-pane active" id="calculatorPane">
-		<h3 align="center">Mortgage Calculator</h3>
-			<h6 align="center">
-			<br>Calculate your monthly mortgage payment using the free calculator below.
-			<br>A house is the largest purchase most of us will ever make so it's important 
-			<br>to calculate what your mortgage payment will be and how much you can afford. 
-			<br>Estimate your monthly payments and see the effect of adding extra payments.</h6>
-			
+			<h3>Autoloan Calculator</h3>
 			<form id="calculateForm" class="form-horizontal" ng-submit="calculate()">
-			
 				<!-- State -->
 				<div class="form-group">                    
 			        <label for="state" class="col-sm-4 control-label"><font color="red">* </font>State</label>
@@ -203,7 +103,14 @@ h6 {
 				    	</select>
 					</div>
 			    </div>
+			    <!-- State tax -->
+			    <div class="form-group">                    
+			        <label for="tax" class="col-sm-4 control-label"><font color="red">* </font>
+			        	state tax&nbsp&nbsp
+			        </label>
+			    </div>
 			    <!-- Purchase price -->
+			    	
 				<div class="form-group">                    
 			        <label for="purchase" class="col-sm-4 control-label"><font color="red">* </font>
 			        	Purchase Price&nbsp&nbsp
@@ -217,44 +124,25 @@ h6 {
 			            </div>
 			        </div>
 			    </div>
-			    <!-- Loan term -->
+			    <!-- term -->
 				<div class="form-group">                    
 			        <label for="termInYears" class="col-sm-4 control-label"><font color="red">* </font>
-			        	Loan Term&nbsp&nbsp
+			        	term&nbsp&nbsp
 			        	<img alt="Question" src="img/question-icon.png" data-toggle="tooltip" 
 			        	data-placement="top" title="{{termInYearsQuest}}">
 			        </label>
 			        <div class="col-sm-4">
 			        	<label class="radio-inline">
-						  	<input type="radio" ng-model="termInYears" name="termInYears" value="30">30 years
+						  	<input type="radio" ng-model="termInYears" name="termInYears" value="3">3 years
 						</label>
 						<label class="radio-inline">
-						  	<input type="radio" ng-model="termInYears" name="termInYears" value="20">20 years
+						  	<input type="radio" ng-model="termInYears" name="termInYears" value="4">4 years
 						</label>
 						<label class="radio-inline">
-						  	<input type="radio" ng-model="termInYears" name="termInYears" value="15">15 years
-						</label>
-			        </div>
-			    </div>
-			    <!-- Loan type -->
-			    <div class="form-group">                    
-			        <label for="loanType" class="col-sm-4 control-label"><font color="red">* </font>
-			        	Loan Type&nbsp&nbsp
-			        	<img alt="Question" src="img/question-icon.png" data-toggle="tooltip" 
-			        	data-placement="top" title="{{loanTypeQuest}}">
-			        </label>
-			        <div class="col-sm-4">
-			        	<label class="radio-inline">
-						  	<input type="radio" ng-model="loanType" name="loanType" value="fixed">Fixed rate
+						  	<input type="radio" ng-model="termInYears" name="termInYears" value="5">5 years
 						</label>
 						<label class="radio-inline">
-						  	<input type="radio" ng-model="loanType" name="loanType" ng-disabled="isFixedSelected()" value="5_year_arm">5-year ARM
-						</label>
-						<label class="radio-inline">
-						  	<input type="radio" ng-model="loanType" name="loanType" ng-disabled="isFixedSelected()" value="7_year_arm">7-year ARM
-						</label>
-						<label class="radio-inline">
-						  	<input type="radio" ng-model="loanType" name="loanType" ng-disabled="isFixedSelected()" value="10_year_arm">10-year ARM
+						  	<input type="radio" ng-model="termInYears" name="termInYears" value="6">6 years
 						</label>
 			        </div>
 			    </div>
@@ -397,6 +285,13 @@ h6 {
 <script src="js/controller/calculatorController.js"></script>
 
 
+
+ <!-- jQuery -->
+   <!--  <script src="js/jquery-1.11.3.min.js"></script>
+
+    Bootstrap Core JavaScript
+    <script src="js/bootstrap.min.js"></script> -->
+    
     
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">

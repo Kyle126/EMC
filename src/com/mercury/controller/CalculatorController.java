@@ -24,7 +24,14 @@ public class CalculatorController {
 	public String calculatorPage() {
 		return "calculator/calculator";
 	}
-	
+	@RequestMapping(value = "/autoloan", method = RequestMethod.GET)
+	public String autoloanPage() {
+		return "calculator/autoloan";
+	}
+	@RequestMapping(value = "/personalloan", method = RequestMethod.GET)
+	public String personalloanPage() {
+		return "calculator/personalloan";
+	}
 	// RESTful web service
 	@RequestMapping(value = "/calculate", method = RequestMethod.POST)	
 	@ResponseBody
