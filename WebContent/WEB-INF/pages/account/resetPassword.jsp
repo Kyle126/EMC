@@ -17,6 +17,18 @@
 <script src="js/jquery.validate.min.js"></script>
 <title>Reset Password</title>
 </head>
+<style>
+div.panel{
+background:rgba(255, 255, 255, 0.8);
+}
+form{
+margin-left:50px;
+}
+div.container{
+width:900px;
+
+}
+</style>
 <body>
 <!-- Prompt message -->
 <jsp:include page="../prompt.jsp" />
@@ -54,7 +66,13 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-
+   <div class='container'>
+    <div class='panel panel-primary dialog-panel'>
+      <div class='panel-heading'>
+        <h5>Almaguin Campground - Reservation</h5>
+      </div>
+      <div class='panel-body'>
+	<br/>  
 <h3 class="signup">Reset Password</h3>
 	<form id="resetPasswordForm" class="form-horizontal" action="resetPassword.html" method="post">
 		<div class="form-group">                    

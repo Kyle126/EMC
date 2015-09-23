@@ -31,7 +31,19 @@
 	width: 100%;
 	height: 500px;
 }
+div.container{
+width:900px;
 
+}
+div.panel{
+background:rgba(255, 255, 255, 0.8);
+}
+form{
+margin-left:50px;
+}
+#calculator{
+background-color:#707070;
+}
 div#topbar {
    margin: 0;
    padding: .3em 0 .3em 0;
@@ -39,6 +51,12 @@ div#topbar {
    width: 100%;
    text-align: center;
 } 
+.form-group{
+	margin-right:100px;
+}
+.check-box{
+	margin-right:100px;
+}
 #nav {
 		width: 100%;
 		float: top;
@@ -48,7 +66,9 @@ div#topbar {
 		background-color: #000000;
 		border-bottom: 1px solid #ccc; 
 		border-top: 1px solid #ccc; }
-	.dropdown{
+#myaccount{
+		margin-left: 500px;}
+#signin{
 		margin-left: 500px;}
 #nav li {
 		float: left; }
@@ -63,8 +83,18 @@ div#topbar {
 #nav li a:hover {
 		color: #c00;
 		background-color: #fff; }
-		
-
+#j_username{
+		width:240px;
+		margin-left:-10px;
+}
+#j_password{
+		width:240px;
+		margin-left:-10px;
+}
+#summitbutton{
+		margin-right:80px;
+		margin-bottom:50px;
+}
 	.form {
 		margin: auto;
 		height: 86%;
@@ -76,7 +106,7 @@ div#topbar {
 		outline: none;
 		border: rgba(24, 149, 215, 1) 2px solid;
 		color: rgba(24, 149, 215, 1);
-	
+	}
 	.textbox:focus {
 		outline: none;
 		border: rgba(24, 149, 215, 1) 2px solid;
@@ -102,7 +132,7 @@ h6 {
  	<div id="topbar">
        <ul id="nav">
             <sec:authorize access="isAnonymous()">
-             <li class="dropdown">
+             <li class="dropdown"id="signin">
 					<a href="" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
 					<ul class="dropdown-menu">
 						<form id="loginForm" action="<c:url value='/j_spring_security_check'/>" method="post" class="login-form">
@@ -120,7 +150,7 @@ h6 {
 							<div>
 								<a href="forgetPassword.html" style="color:red; font-size:15px" >Forget Password?</a>
 							</div>
-							<button type="submit" class="btn btn-primary pull-right">Sign In</button>
+							<button type="submit" class="btn btn-primary pull-right" id="summitbutton">Sign In</button>
 						</form>
 					</ul>
 				</li>
@@ -129,10 +159,16 @@ h6 {
                 <a href="signup.html" onclick = $("#menu-close").click(); >Sign Up</a>
             </li>
             </sec:authorize>
-            	
-			
+            	<li class="dropdown" id="calculator">
+		            <a href="" class="dropdown-toggle" data-toggle="dropdown">calculator<b class="caret"></b></a>
+		            <ul class="dropdown-menu"id="calculator">
+		                <li><a href="calculator.html"><font color="white">calculator</font></a></li>
+		              	<li><a href="autoloan.html"><font color="white">autoloan</font></a></li>
+		              	<li><a href="personalloan.html"><font color="white">personalloan</font></a></li>
+		            </ul>
+	          	</li>
 			<sec:authorize access="isAuthenticated()">
-				<li class="dropdown">
+				<li class="dropdown" id="myaccount">
 		            <a href="" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
 		            <ul class="dropdown-menu">
 		              	<li><a href="updatePassword.html">Change Password</a></li>
@@ -166,21 +202,13 @@ h6 {
  
 <header id="top" class="header">
 <!-- Enhanced Mortgage Calculator Content -->
-<div role="tabpanel" id="calculator-body">
-	<!-- Nav Tabs -->
-	<ul class="nav nav-justified" role="tablist" id="calculatorNav">
-		<li role="presentation" class="active">
-			<a href="#calculatorPane" aria-controls="calculatorPane" role="tab" data-toggle="tab">Calculator</a>
-		</li>
-		<li role="presentation">
-			<a href="#resultPane" aria-controls="resultPane" role="tab" data-toggle="tab">Payment Schedule</a>
-		</li>
-		<li role="presentation">
-			<a href="#chartPane" aria-controls="chartPane" role="tab" data-toggle="tab">Chart</a>
-		</li>
-	</ul>
+<div class='container'>
+    <div class='panel panel-primary dialog-panel'>
+      <div class='panel-heading'>
+        <h5>Almaguin Campground - Reservation</h5>
+      </div>
+      <div class='panel-body'>
 	<br/>
-	
 	<!-- Tab Panes -->
 	<div class="tab-content">
 		<!-- Calculator Pane -->

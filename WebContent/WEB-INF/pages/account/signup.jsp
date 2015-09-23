@@ -19,8 +19,18 @@
 
 </head>
 <body>
+<style>
+div.panel{
+background:rgba(255, 255, 255, 0.8);
+}
+form{
+margin-left:50px;
+}
+div.container{
+width:900px;
 
-
+}
+</style>
 <!-- Main body -->
 
     <!-- Navigation -->
@@ -54,7 +64,13 @@
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-        
+   <div class='container'>
+    <div class='panel panel-primary dialog-panel'>
+      <div class='panel-heading'>
+        <h5>Almaguin Campground - Reservation</h5>
+      </div>
+      <div class='panel-body'>
+	<br/>     
  <h3 class="signup" >Sign Up</h3>
 	<form id="signupForm" class="form-horizontal" action="signup.html" method="post">
 		<div class="form-group">                    

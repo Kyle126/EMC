@@ -18,58 +18,33 @@
 <script src="js/jquery.validate.min.js"></script>
 <title>Update Email</title>
 </head>
+<style>
+div.panel{
+background:rgba(255, 255, 255, 0.8);
+}
+form{
+margin-left:50px;
+}
+div.container{
+width:900px;
 
+}
+</style>
 <body>
 
 
 <!-- Main body -->
-<!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="home.html"  onclick = $("#menu-close").click(); >Mortgage Calculator</a>
-            </li>
-            
-            
-      	<li><a href="calculator.html">Calculator</a></li>
-      
-      
-         <li class="dropdown">
-		            <a href="" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
-		            <ul class="dropdown-menu">
-		              	<li><a href="updatePassword.html">Change Password</a></li>
-		              	<li><a href="updateEmail.html">Change Email</a></li>
-		              	<li><a href="<c:url value='/j_spring_security_logout'/>">Logout</a></li>
-		            </ul>
-	          </li>
-	          
-	          
-           	  <sec:authorize access="hasRole('ROLE_ADMIN')">          		
-            			<li><a href="showInterestRate.html">Interest Rate Table</a></li>
-		              	<li><a href="updateInterestRate.html">Interest Rate Management</a></li>	            		          	
-			</sec:authorize>
-			
-			
-            <li>
-                <a href="home.html" onclick = $("#menu-close").click(); >Home</a>
-            </li>
-            <li>
-                <a href="home.html#callout" onclick = $("#menu-close").click(); >About</a>
-            </li>
-    
-                
-            <li>
-                <a href="home.html#contact" onclick = $("#menu-close").click(); >Contact</a>
-            </li>
-        </ul>
-    </nav>
 
     <!-- Header -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-
+<div class='container'>
+    <div class='panel panel-primary dialog-panel'>
+      <div class='panel-heading'>
+        <h5>Almaguin Campground - Reservation</h5>
+      </div>
+      <div class='panel-body'>
+	<br/>     
 <h3 calss="signup">Update Email</h3>
 <form id="updateEmailForm" class="form-horizontal" action="updateEmail.html" method="post">
 	<div class="form-group">                    

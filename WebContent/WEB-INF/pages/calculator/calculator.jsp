@@ -5,11 +5,79 @@
 <html ng-app="myApp">
 <head>
 <style>
+#map-canvas {
+	width: 100%;
+	height: 500px;
+}
 div.container{
 width:900px;
+
+}
+div.panel{
+background:rgba(255, 255, 255, 0.8);
 }
 form{
 margin-left:50px;
+}
+
+div#topbar {
+   margin: 0;
+   padding: .3em 0 .3em 0;
+   background: #707070 ;
+   width: 100%;
+   text-align: center;
+} 
+#nav {
+		width: 100%;
+		float: top;
+		margin: 0 0 3em 0;
+		padding: 0;
+		list-style: none;
+		background-color: #000000;
+		border-bottom: 1px solid #ccc; 
+		border-top: 1px solid #ccc; }
+	.dropdown{
+		margin-left: 500px;}
+#nav li {
+		float: left; }
+#nav li a {
+		display: block;
+		padding: 8px 15px;
+		text-decoration: none;
+		font-weight: bold;
+		font-size: 150%;
+		color: #FFFFFF ;
+		}
+#nav li a:hover {
+		color: #c00;
+		background-color: #fff; }
+		
+
+	.form {
+		margin: auto;
+		height: 86%;
+		width: 100%;
+		box-sizing: border-box;
+		padding: 40px;
+	}
+	.textbox:focus {
+		outline: none;
+		border: rgba(24, 149, 215, 1) 2px solid;
+		color: rgba(24, 149, 215, 1);
+	
+	.textbox:focus {
+		outline: none;
+		border: rgba(24, 149, 215, 1) 2px solid;
+		color: rgba(24, 149, 215, 1);
+	}		
+h6 {
+    display: block;
+    font-size: .67em;
+    margin-top: 2.33em;
+    margin-bottom: 2.33em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
 }
 </style>
 <link rel="stylesheet" type="text/css" href="css/to-top.css"/>
@@ -28,55 +96,73 @@ margin-left:50px;
 <title>Mortgage Calculator</title>
 </head>
 <body ng-controller="calculatorCtrl">
-
 <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="home.html"  onclick = $("#menu-close").click(); >Mortgage Calculator</a>
+ 	<div id="topbar">
+       <ul id="nav">
+            <sec:authorize access="isAnonymous()">
+             <li class="dropdown">
+					<a href="" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<form id="loginForm" action="<c:url value='/j_spring_security_check'/>" method="post" class="login-form">
+							<div class="form-group">
+								<label for="email">Username</label> 
+								<input type="text" class="form-control" name="j_username" id="j_username" placeholder="Username">
+							</div>
+							<div class="form-group">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" name="j_password" id="j_password" placeholder="Password">
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" name="_spring_security_remember_me" checked> Remember me for 30 days</label>
+							</div>
+							<div>
+								<a href="forgetPassword.html" style="color:red; font-size:15px" >Forget Password?</a>
+							</div>
+							<button type="submit" class="btn btn-primary pull-right">Sign In</button>
+						</form>
+					</ul>
+				</li>
+           
+            <li>
+                <a href="signup.html" onclick = $("#menu-close").click(); >Sign Up</a>
             </li>
-            
-            
-      	<li><a href="calculator.html">Calculator</a></li>
-      
-      
-         <li class="dropdown">
+            </sec:authorize>
+            	
+			
+			<sec:authorize access="isAuthenticated()">
+				<li class="dropdown">
 		            <a href="" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
 		            <ul class="dropdown-menu">
 		              	<li><a href="updatePassword.html">Change Password</a></li>
 		              	<li><a href="updateEmail.html">Change Email</a></li>
 		              	<li><a href="<c:url value='/j_spring_security_logout'/>">Logout</a></li>
 		            </ul>
-	          </li>
-	          
-	          
-           	  <sec:authorize access="hasRole('ROLE_ADMIN')">          		
-            			<li><a href="showInterestRate.html">Interest Rate Table</a></li>
-		              	<li><a href="updateInterestRate.html">Interest Rate Management</a></li>	            		          	
+	          	</li>
 			</sec:authorize>
 			
 			
+			<!-- Admin can access -->
+			<sec:authorize access="hasRole('ROLE_ADMIN')">          		
+            			<li><a href="showInterestRate.html">Interest Rate Table</a></li>
+		              	<li><a href="updateInterestRate.html">Interest Rate Management</a></li>
+	            	
+	          	
+			</sec:authorize>
+			
             <li>
-                <a href="home.html" onclick = $("#menu-close").click(); >Home</a>
+                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
             </li>
             <li>
-                <a href="home.html#callout" onclick = $("#menu-close").click(); >About</a>
+                <a href="#callout" onclick = $("#menu-close").click(); >About</a>
             </li>
-    
-                
+              
             <li>
-                <a href="home.html#contact" onclick = $("#menu-close").click(); >Contact</a>
+                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
             </li>
-        </ul>
-    </nav>
-
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-
-
+    </ul>
+   </div>
+ 
+<header id="top" class="header">
 <!-- Enhanced Mortgage Calculator Content -->
 <div class='container'>
     <div class='panel panel-primary dialog-panel'>
@@ -92,7 +178,7 @@ margin-left:50px;
 		<div role="tabpanel" class="tab-pane active" id="PersonalPane">
 		<!-- Calculator Pane -->
 		<div role="tabpanel" class="tab-pane active" id="calculatorPane">
-			<h3>Enhanced Mortgage Calculator</h3>
+			<h3 align="center">Enhanced Mortgage Calculator</h3>
 			<form id="calculateForm" class="form-horizontal" ng-submit="calculate()">
 				<!-- State -->
 				<div class="form-group">                    
