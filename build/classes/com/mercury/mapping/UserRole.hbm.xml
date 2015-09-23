@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.mercury.bean.UserRole" table="User_roles">
+		<id name="user_role_id" column="User_role_id">
+			<generator class="sequence">
+				<param name="sequence">USER_ROLE_ID_SEQ</param>
+			</generator>
+		</id>
+		<many-to-one name="user" column="User_id" class="com.mercury.bean.User"/> 
+		<property name="authority" column="Authority"/>
+	</class>
+</hibernate-mapping>

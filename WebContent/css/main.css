@@ -1,0 +1,76 @@
+body {
+  padding-top: 10px;
+}
+
+.content {
+	min-height: 550px;
+}
+
+#appNav {
+	padding-top: 15px;
+}
+
+.desc {
+	padding-top: 10px;
+	font-size: 15px;
+	/* width: 80%;
+	margin-left: auto;
+	margin-right: auto; */
+}
+
+.emc-desc {
+	
+}
+
+/* Sticky footer styles */
+.footer {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  margin-top: 10px;
+}
+
+/* Logo image */
+.emc-logo {
+	width: 100px;
+	height: 70px;
+	border-radius: 10px;
+}
+/* Login form */
+.login-form {
+  padding:20px;
+  min-width: 250px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* emc-table style */
+.emc-table th, .emc-table td {
+	text-align: center;
+	bgcolor:#00FF00;
+}
+
+/* For calculator result summary table */
+.emc-summary-table tr td:first-child {
+	font-weight: bold;
+}
+.emc-summary-table tr td:last-child {
+	text-align: right;
+}
+
+/* For prompt message (success, error) */
+.prompt {
+	font-size: 18px;
+}
+
+/* For error message */
+label.error {
+  	color: red;
+  	padding: 2px 8px;
+  	margin-top: 2px;
+}
+
+/* For calculator page */
+#calculator-body {
+	margin-top: -25px;
+}
+

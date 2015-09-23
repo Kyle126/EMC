@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.mercury.bean.AutoloanInterestRate" table="AutoloanInterest_rates">
+		<id name="state_id" column="State_id">
+			<generator class="sequence">
+				<param name="sequence">STATE_ID_SEQ</param>
+			</generator>
+		</id>
+		<property name="state" column="State"/>
+		<property name="fix_3" column="Fix_3"/>
+		<property name="fix_4" column="Fix_4"/>
+		<property name="fix_5" column="Fix_5"/>
+		<property name="fix_6" column="Fix_6"/>
+	</class>
+</hibernate-mapping>
